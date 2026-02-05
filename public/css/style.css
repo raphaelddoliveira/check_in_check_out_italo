@@ -1,0 +1,351 @@
+/* === Spazio Italia - Cores e Identidade Visual === */
+:root {
+    --spazio-green: #008C45;
+    --spazio-red: #CD212A;
+    --spazio-dark: #2c2c2c;
+    --spazio-light: #f8f9fa;
+    --spazio-white: #ffffff;
+    --spazio-gray: #6c757d;
+    --spazio-border: #dee2e6;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--spazio-light);
+    color: var(--spazio-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Navbar === */
+.navbar-spazio {
+    background-color: var(--spazio-white);
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, var(--spazio-green), var(--spazio-white), var(--spazio-red)) 1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 0.75rem 0;
+}
+
+.navbar-spazio .navbar-brand img {
+    transition: opacity 0.2s;
+}
+
+.navbar-spazio .navbar-brand img:hover {
+    opacity: 0.85;
+}
+
+.navbar-spazio .nav-link {
+    color: var(--spazio-dark) !important;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem !important;
+    transition: color 0.2s;
+}
+
+.navbar-spazio .nav-link:hover {
+    color: var(--spazio-green) !important;
+}
+
+.navbar-spazio .navbar-toggler {
+    border-color: var(--spazio-dark);
+}
+
+.navbar-spazio .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(44, 44, 44, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* === Footer === */
+.footer-spazio {
+    background-color: var(--spazio-dark);
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: auto;
+    font-size: 0.85rem;
+}
+
+/* === Cards e Formularios === */
+.card-spazio {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.card-spazio .card-header {
+    background-color: var(--spazio-dark);
+    color: var(--spazio-white);
+    font-weight: 600;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(to right, var(--spazio-green), var(--spazio-white), var(--spazio-red)) 1;
+}
+
+.card-spazio .card-body {
+    padding: 2rem;
+}
+
+/* === Tabela de Condicoes === */
+.table-conditions {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-conditions thead th {
+    background-color: var(--spazio-dark);
+    color: var(--spazio-white);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    padding: 0.85rem 1rem;
+}
+
+.table-conditions tbody td {
+    vertical-align: middle;
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+}
+
+.table-conditions tbody tr {
+    border-bottom: 1px solid var(--spazio-border);
+}
+
+.table-conditions tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table-conditions tbody tr:hover {
+    background-color: rgba(0, 140, 69, 0.04);
+}
+
+.table-conditions .item-name {
+    font-weight: 500;
+    min-width: 180px;
+}
+
+/* === Select de Status === */
+.form-select-status {
+    border: 2px solid var(--spazio-border);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    font-weight: 500;
+    min-width: 180px;
+    transition: border-color 0.2s;
+}
+
+.form-select-status:focus {
+    border-color: var(--spazio-green);
+    box-shadow: 0 0 0 0.2rem rgba(0, 140, 69, 0.15);
+}
+
+.form-select-status.status-ok {
+    border-color: var(--spazio-green);
+    color: var(--spazio-green);
+}
+
+.form-select-status.status-problem {
+    border-color: var(--spazio-red);
+    color: var(--spazio-red);
+}
+
+/* === Input de Observacoes === */
+.form-control-obs {
+    border: 2px solid var(--spazio-border);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    transition: border-color 0.2s;
+}
+
+.form-control-obs:focus {
+    border-color: var(--spazio-green);
+    box-shadow: 0 0 0 0.2rem rgba(0, 140, 69, 0.15);
+}
+
+/* === Botao Aceito === */
+.btn-aceito {
+    background-color: var(--spazio-green);
+    color: var(--spazio-white);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.9rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+
+.btn-aceito:hover {
+    background-color: #006d35;
+    color: var(--spazio-white);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 140, 69, 0.3);
+}
+
+.btn-aceito:active {
+    transform: translateY(0);
+}
+
+.btn-aceito:disabled {
+    background-color: var(--spazio-gray);
+    transform: none;
+    box-shadow: none;
+}
+
+/* === Botoes Gerais === */
+.btn-spazio-primary {
+    background-color: var(--spazio-green);
+    color: var(--spazio-white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-spazio-primary:hover {
+    background-color: #006d35;
+    color: var(--spazio-white);
+}
+
+.btn-spazio-secondary {
+    background-color: var(--spazio-dark);
+    color: var(--spazio-white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-spazio-secondary:hover {
+    background-color: #1a1a1a;
+    color: var(--spazio-white);
+}
+
+.btn-spazio-danger {
+    background-color: var(--spazio-red);
+    color: var(--spazio-white);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-spazio-danger:hover {
+    background-color: #a81b22;
+    color: var(--spazio-white);
+}
+
+/* === Login === */
+.login-container {
+    max-width: 420px;
+    margin: 3rem auto;
+}
+
+.login-logo {
+    max-width: 200px;
+}
+
+/* === Dashboard === */
+.badge-checkin {
+    background-color: var(--spazio-green);
+    font-size: 0.75rem;
+}
+
+.badge-checkout {
+    background-color: var(--spazio-red);
+    font-size: 0.75rem;
+}
+
+.badge-pending {
+    background-color: #ffc107;
+    color: var(--spazio-dark);
+    font-size: 0.75rem;
+}
+
+/* === Data/Hora Header === */
+.form-datetime-row {
+    background-color: var(--spazio-light);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--spazio-border);
+}
+
+.form-datetime-row label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--spazio-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-datetime-row .form-control {
+    border: 2px solid var(--spazio-border);
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.form-datetime-row .form-control:focus {
+    border-color: var(--spazio-green);
+    box-shadow: 0 0 0 0.2rem rgba(0, 140, 69, 0.15);
+}
+
+/* === Pagina de Sucesso === */
+.success-icon {
+    color: var(--spazio-green);
+    font-size: 4rem;
+}
+
+.success-card {
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+/* === Pagina de Erro/Expirado === */
+.expired-icon {
+    color: var(--spazio-red);
+    font-size: 4rem;
+}
+
+/* === Responsivo === */
+@media (max-width: 768px) {
+    .card-spazio .card-body {
+        padding: 1.25rem;
+    }
+
+    .table-conditions {
+        font-size: 0.85rem;
+    }
+
+    .table-conditions .item-name {
+        min-width: 120px;
+    }
+
+    .form-select-status {
+        min-width: 140px;
+        font-size: 0.85rem;
+    }
+
+    .btn-aceito {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .form-datetime-row {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .table-conditions td,
+    .table-conditions th {
+        padding: 0.6rem 0.5rem;
+    }
+
+    .form-select-status {
+        min-width: 120px;
+    }
+}

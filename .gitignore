@@ -1,0 +1,9 @@
+/vendor/
+.env
+/database/*.sqlite
+*.log
+.claude/
+nul
+composer-setup.php
+composer.phar
+test_api.php

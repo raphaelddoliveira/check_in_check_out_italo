@@ -1,0 +1,21 @@
+RewriteEngine On
+
+# Redirect to front controller if file/directory does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Deny access to sensitive files
+<FilesMatch "\.(env|sqlite|sql|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny access to src directory
+<IfModule mod_rewrite.c>
+    RewriteRule ^src/ - [F,L]
+    RewriteRule ^config/ - [F,L]
+    RewriteRule ^database/ - [F,L]
+    RewriteRule ^templates/ - [F,L]
+    RewriteRule ^vendor/ - [F,L]
+</IfModule>
