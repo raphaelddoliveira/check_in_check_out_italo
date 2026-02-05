@@ -48,7 +48,8 @@ class CheckInController
             return;
         }
 
-        $formAction = '/checkin?token=' . urlencode($access['token']);
+        $basePath = config('app.base_path', '');
+        $formAction = $basePath . '/checkin?token=' . urlencode($access['token']);
 
         Response::view('forms/checkin', [
             'pageTitle'   => 'Check-in - ' . $opportunity['name'],
@@ -65,7 +66,7 @@ class CheckInController
 
         if (!CsrfProtection::validate($request)) {
             Session::flash('error', 'Token de seguranca invalido. Tente novamente.');
-            Response::redirect('/checkin?token=' . urlencode($access['token']));
+            Response::redirect(config('app.base_path', '') . '/checkin?token=' . urlencode($access['token']));
             return;
         }
 
@@ -106,7 +107,7 @@ class CheckInController
             ]);
         } catch (\Exception $e) {
             Session::flash('error', 'Erro ao processar check-in: ' . $e->getMessage());
-            Response::redirect('/checkin?token=' . urlencode($access['token']));
+            Response::redirect(config('app.base_path', '') . '/checkin?token=' . urlencode($access['token']));
         }
     }
 }

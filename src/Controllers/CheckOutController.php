@@ -48,7 +48,8 @@ class CheckOutController
             return;
         }
 
-        $formAction = '/checkout?token=' . urlencode($access['token']);
+        $basePath = config('app.base_path', '');
+        $formAction = $basePath . '/checkout?token=' . urlencode($access['token']);
 
         Response::view('forms/checkout', [
             'pageTitle'   => 'Check-out - ' . $opportunity['name'],
@@ -65,7 +66,7 @@ class CheckOutController
 
         if (!CsrfProtection::validate($request)) {
             Session::flash('error', 'Token de seguranca invalido. Tente novamente.');
-            Response::redirect('/checkout?token=' . urlencode($access['token']));
+            Response::redirect(config('app.base_path', '') . '/checkout?token=' . urlencode($access['token']));
             return;
         }
 
@@ -106,7 +107,7 @@ class CheckOutController
             ]);
         } catch (\Exception $e) {
             Session::flash('error', 'Erro ao processar check-out: ' . $e->getMessage());
-            Response::redirect('/checkout?token=' . urlencode($access['token']));
+            Response::redirect(config('app.base_path', '') . '/checkout?token=' . urlencode($access['token']));
         }
     }
 }

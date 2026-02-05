@@ -17,6 +17,7 @@ function config(string $key, $default = null)
         'db.path'              => $_ENV['DB_PATH'] ?? 'database/app.sqlite',
         'token.expiry_hours'   => (int) ($_ENV['TOKEN_EXPIRY_HOURS'] ?? 72),
         'session.lifetime_min' => (int) ($_ENV['SESSION_LIFETIME_MINUTES'] ?? 120),
+        'app.base_path'        => $_ENV['APP_BASE_PATH'] ?? '',
     ];
 
     return $map[$key] ?? $default;

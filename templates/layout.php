@@ -7,13 +7,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="/public/css/style.css" rel="stylesheet">
+    <?php $basePath = config('app.base_path', ''); ?>
+    <link href="<?= $basePath ?>/public/css/style.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-spazio">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="/image/Livello_1.png" alt="Spazio Italia" height="50">
+            <a class="navbar-brand" href="<?= $basePath ?>/">
+                <img src="<?= $basePath ?>/image/Livello_1.png" alt="Spazio Italia" height="50">
             </a>
         </div>
     </nav>
@@ -80,6 +81,6 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/public/js/form.js"></script>
+    <script src="<?= $basePath ?>/public/js/form.js"></script>
 </body>
 </html>

@@ -13,6 +13,12 @@ class Request
     {
         $uri = $_SERVER['REQUEST_URI'] ?? '/';
         $uri = parse_url($uri, PHP_URL_PATH);
+
+        $basePath = config('app.base_path', '');
+        if ($basePath && str_starts_with($uri, $basePath)) {
+            $uri = substr($uri, strlen($basePath));
+        }
+
         return rtrim($uri, '/') ?: '/';
     }
 

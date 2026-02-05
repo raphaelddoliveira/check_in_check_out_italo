@@ -1,4 +1,5 @@
 RewriteEngine On
+RewriteBase /checkin/
 
 # Redirect to front controller if file/directory does not exist
 RewriteCond %{REQUEST_FILENAME} !-f
