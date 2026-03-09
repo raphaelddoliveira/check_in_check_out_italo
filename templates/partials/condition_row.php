@@ -18,18 +18,16 @@
         <input type="text" name="<?= $fieldName ?>_obs" class="form-control form-control-obs"
                placeholder="Observações (opcional)">
     </td>
-    <td class="text-center">
-        <div class="upload-wrapper">
-            <label class="btn btn-sm btn-outline-secondary upload-btn">
-                <i class="bi bi-camera"></i>
-                <input type="file" name="<?= $fieldName ?>_foto" accept="image/*" capture="environment" class="d-none foto-input">
-            </label>
-            <div class="foto-preview mt-1" style="display:none;">
-                <img src="" alt="Preview" class="img-thumbnail" style="max-height: 60px; cursor: pointer;">
-                <button type="button" class="btn btn-sm btn-outline-danger remove-foto" title="Remover">
-                    <i class="bi bi-x"></i>
-                </button>
-            </div>
+    <td class="text-center foto-cell">
+        <input type="file" name="<?= $fieldName ?>_foto" accept="image/*" capture="environment" class="d-none foto-input" id="foto_<?= $fieldName ?>">
+        <label for="foto_<?= $fieldName ?>" class="btn btn-sm btn-outline-secondary upload-btn mb-0">
+            <i class="bi bi-camera"></i>
+        </label>
+        <div class="foto-preview" style="display:none;">
+            <img src="" alt="Preview" class="img-thumbnail" style="max-height: 60px; max-width: 60px; cursor: pointer;">
+            <button type="button" class="btn btn-sm btn-outline-danger remove-foto mt-1" title="Remover">
+                <i class="bi bi-x"></i>
+            </button>
         </div>
     </td>
 </tr>

@@ -34,10 +34,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Upload de fotos - preview e remover
     document.querySelectorAll('.foto-input').forEach(function (input) {
         input.addEventListener('change', function () {
-            var wrapper = this.closest('.upload-wrapper');
-            var preview = wrapper.querySelector('.foto-preview');
+            var cell = this.closest('.foto-cell');
+            var preview = cell.querySelector('.foto-preview');
             var img = preview.querySelector('img');
-            var uploadBtn = wrapper.querySelector('.upload-btn');
+            var uploadBtn = cell.querySelector('.upload-btn');
 
             if (this.files && this.files[0]) {
                 var file = this.files[0];
@@ -59,14 +59,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll('.remove-foto').forEach(function (btn) {
         btn.addEventListener('click', function () {
-            var wrapper = this.closest('.upload-wrapper');
-            var input = wrapper.querySelector('.foto-input');
-            var preview = wrapper.querySelector('.foto-preview');
-            var uploadBtn = wrapper.querySelector('.upload-btn');
+            var cell = this.closest('.foto-cell');
+            var input = cell.querySelector('.foto-input');
+            var preview = cell.querySelector('.foto-preview');
+            var uploadBtn = cell.querySelector('.upload-btn');
             input.value = '';
             preview.querySelector('img').src = '';
             preview.style.display = 'none';
-            uploadBtn.style.display = 'block';
+            uploadBtn.style.display = 'inline-block';
         });
     });
 
