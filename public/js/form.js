@@ -31,46 +31,50 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Upload de fotos - preview e remover
+    // Upload de fotos - multiplas por item
     document.querySelectorAll('.foto-input').forEach(function (input) {
+        // Store selected files in a DataTransfer to accumulate across selections
+        var storedFiles = new DataTransfer();
+
         input.addEventListener('change', function () {
             var cell = this.closest('.foto-cell');
-            var preview = cell.querySelector('.foto-preview');
-            var img = preview.querySelector('img');
-            var uploadBtn = cell.querySelector('.upload-btn');
+            var container = cell.querySelector('.foto-previews-container');
+            var countSpan = cell.querySelector('.foto-count');
 
-            if (this.files && this.files[0]) {
-                var file = this.files[0];
-                if (file.size > 5 * 1024 * 1024) {
-                    alert('A imagem deve ter no máximo 5MB.');
-                    this.value = '';
-                    return;
+            if (this.files && this.files.length > 0) {
+                for (var i = 0; i < this.files.length; i++) {
+                    var file = this.files[i];
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('A imagem "' + file.name + '" excede 5MB e foi ignorada.');
+                        continue;
+                    }
+                    storedFiles.items.add(file);
+                    addPreview(container, file, storedFiles, input, countSpan);
                 }
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    img.src = e.target.result;
-                    preview.style.display = 'flex';
-                    uploadBtn.style.display = 'none';
-                };
-                reader.readAsDataURL(file);
+                // Update input files to accumulated list
+                input.files = storedFiles.files;
+                updateCount(countSpan, storedFiles.files.length);
             }
         });
     });
 
-    document.querySelectorAll('.remove-foto').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            var cell = this.closest('.foto-cell');
-            var input = cell.querySelector('.foto-input');
-            var preview = cell.querySelector('.foto-preview');
-            var uploadBtn = cell.querySelector('.upload-btn');
-            input.value = '';
-            preview.querySelector('img').src = '';
-            preview.style.display = 'none';
-            uploadBtn.style.display = 'inline-block';
-        });
-    });
+    function addPreview(container, file, storedFiles, input, countSpan) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'foto-preview';
 
-    document.querySelectorAll('.foto-preview img').forEach(function (img) {
+        var img = document.createElement('img');
+        img.alt = 'Preview';
+        img.className = 'img-thumbnail';
+        img.style.maxHeight = '60px';
+        img.style.maxWidth = '60px';
+        img.style.cursor = 'pointer';
+
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
         img.addEventListener('click', function () {
             var modalImg = document.getElementById('fotoModalImg');
             if (modalImg) {
@@ -78,7 +82,41 @@ document.addEventListener('DOMContentLoaded', function () {
                 new bootstrap.Modal(document.getElementById('fotoModal')).show();
             }
         });
-    });
+
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'btn btn-sm btn-outline-danger remove-foto mt-1';
+        removeBtn.title = 'Remover';
+        removeBtn.innerHTML = '<i class="bi bi-x"></i>';
+
+        removeBtn.addEventListener('click', function () {
+            // Remove from DataTransfer
+            var newDt = new DataTransfer();
+            for (var j = 0; j < storedFiles.files.length; j++) {
+                if (storedFiles.files[j] !== file) {
+                    newDt.items.add(storedFiles.files[j]);
+                }
+            }
+            // Replace storedFiles contents
+            while (storedFiles.items.length > 0) storedFiles.items.remove(0);
+            for (var k = 0; k < newDt.files.length; k++) {
+                storedFiles.items.add(newDt.files[k]);
+            }
+            input.files = storedFiles.files;
+            wrapper.remove();
+            updateCount(countSpan, storedFiles.files.length);
+        });
+
+        wrapper.appendChild(img);
+        wrapper.appendChild(removeBtn);
+        container.appendChild(wrapper);
+    }
+
+    function updateCount(countSpan, count) {
+        if (countSpan) {
+            countSpan.textContent = count > 0 ? '(' + count + ')' : '';
+        }
+    }
 
     // Modais
     var confirmModal = document.getElementById('confirmModal');

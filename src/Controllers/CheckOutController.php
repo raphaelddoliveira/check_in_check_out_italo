@@ -27,13 +27,27 @@ class CheckOutController
     private function processUploadedPhotos(): array
     {
         $fotos = [];
-        foreach ($_FILES as $key => $file) {
-            if (!str_ends_with($key, '_foto') || $file['error'] !== UPLOAD_ERR_OK) continue;
-            if ($file['size'] > 5 * 1024 * 1024) continue;
-            $mime = mime_content_type($file['tmp_name']);
-            if (!str_starts_with($mime, 'image/')) continue;
+        foreach ($_FILES as $key => $fileData) {
+            if (!str_ends_with($key, '_foto')) continue;
             $fieldName = str_replace('_foto', '', $key);
-            $fotos[$fieldName] = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($file['tmp_name']));
+
+            if (!is_array($fileData['error'])) {
+                if ($fileData['error'] !== UPLOAD_ERR_OK || $fileData['size'] > 5 * 1024 * 1024) continue;
+                $mime = mime_content_type($fileData['tmp_name']);
+                if (!str_starts_with($mime, 'image/')) continue;
+                $fotos[$fieldName] = ['data:' . $mime . ';base64,' . base64_encode(file_get_contents($fileData['tmp_name']))];
+                continue;
+            }
+
+            $fotos[$fieldName] = [];
+            for ($i = 0; $i < count($fileData['error']); $i++) {
+                if ($fileData['error'][$i] !== UPLOAD_ERR_OK) continue;
+                if ($fileData['size'][$i] > 5 * 1024 * 1024) continue;
+                $mime = mime_content_type($fileData['tmp_name'][$i]);
+                if (!str_starts_with($mime, 'image/')) continue;
+                $fotos[$fieldName][] = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($fileData['tmp_name'][$i]));
+            }
+            if (empty($fotos[$fieldName])) unset($fotos[$fieldName]);
         }
         return $fotos;
     }

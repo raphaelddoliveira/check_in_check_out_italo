@@ -157,13 +157,13 @@
                 $status = $formData[$fieldName . '_status'] ?? '-';
                 $obs = $formData[$fieldName . '_obs'] ?? '';
                 $statusClass = ($status === 'OK') ? 'status-ok' : 'status-problem';
-                $hasFoto = !empty($fotos[$fieldName]);
+                $fieldFotos = $fotos[$fieldName] ?? [];
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($item['label']) ?></td>
                     <td class="<?= $statusClass ?>"><?= htmlspecialchars($status) ?></td>
                     <td><?= htmlspecialchars($obs) ?: '-' ?></td>
-                    <td><?php if ($hasFoto): ?><img src="<?= $fotos[$fieldName] ?>" style="max-width: 120px; max-height: 80px;"><?php else: ?>-<?php endif; ?></td>
+                    <td><?php if (!empty($fieldFotos)): ?><?php foreach ($fieldFotos as $foto): ?><img src="<?= $foto ?>" style="max-width: 100px; max-height: 70px; margin: 2px;"> <?php endforeach; ?><?php else: ?>-<?php endif; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

@@ -322,6 +322,14 @@ body {
     cursor: pointer;
 }
 
+.foto-previews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 4px;
+}
+
 .foto-preview {
     display: flex;
     flex-direction: column;
