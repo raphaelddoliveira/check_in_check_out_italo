@@ -357,20 +357,7 @@ body {
 /* === Responsivo === */
 @media (max-width: 768px) {
     .card-spazio .card-body {
-        padding: 1.25rem;
-    }
-
-    .table-conditions {
-        font-size: 0.85rem;
-    }
-
-    .table-conditions .item-name {
-        min-width: 120px;
-    }
-
-    .form-select-status {
-        min-width: 140px;
-        font-size: 0.85rem;
+        padding: 1rem;
     }
 
     .btn-aceito {
@@ -381,15 +368,84 @@ body {
     .form-datetime-row {
         padding: 1rem;
     }
-}
 
-@media (max-width: 576px) {
-    .table-conditions td,
-    .table-conditions th {
-        padding: 0.6rem 0.5rem;
+    /* Tabela vira cards empilhados */
+    .table-conditions {
+        border: none;
+        overflow: visible;
+    }
+
+    .table-conditions thead {
+        display: none;
+    }
+
+    .table-conditions,
+    .table-conditions tbody,
+    .table-conditions tr,
+    .table-conditions td {
+        display: block;
+        width: 100%;
+    }
+
+    .table-conditions tbody tr {
+        background-color: var(--spazio-white);
+        border: 1px solid var(--spazio-border);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .table-conditions tbody tr:hover {
+        background-color: var(--spazio-white);
+    }
+
+    .table-conditions td {
+        padding: 0.4rem 0;
+        border-bottom: none;
+        text-align: left;
+    }
+
+    .table-conditions td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        font-size: 0.75rem;
+        color: var(--spazio-gray);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+    }
+
+    .table-conditions td.item-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--spazio-dark);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
+        border-bottom: 1px solid var(--spazio-border);
+        min-width: unset;
+    }
+
+    .table-conditions td.item-name::before {
+        display: none;
+    }
+
+    .table-conditions td.foto-cell {
+        text-align: left;
     }
 
     .form-select-status {
-        min-width: 120px;
+        width: 100%;
+        min-width: unset;
+        font-size: 0.9rem;
+    }
+
+    .form-control-obs {
+        width: 100%;
+    }
+
+    .foto-previews-container {
+        justify-content: flex-start;
     }
 }
