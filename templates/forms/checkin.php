@@ -44,9 +44,10 @@ $items = \App\Services\FormDataMapper::getCheckInItems();
                         <table class="table table-conditions">
                             <thead>
                                 <tr>
-                                    <th style="width: 30%">Item</th>
-                                    <th style="width: 30%">Condição</th>
-                                    <th style="width: 40%">Observações</th>
+                                    <th style="width: 25%">Item</th>
+                                    <th style="width: 25%">Condição</th>
+                                    <th style="width: 35%">Observações</th>
+                                    <th style="width: 15%">Foto</th>
                                 </tr>
                             </thead>
                             <tbody>

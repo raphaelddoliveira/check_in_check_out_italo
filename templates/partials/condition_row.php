@@ -15,15 +15,17 @@
         </select>
     </td>
     <td>
-        <input type="text" name="<?= $fieldName ?>_obs" class="form-control form-control-obs mb-2"
+        <input type="text" name="<?= $fieldName ?>_obs" class="form-control form-control-obs"
                placeholder="Observações (opcional)">
+    </td>
+    <td class="text-center">
         <div class="upload-wrapper">
-            <label class="btn btn-sm btn-outline-secondary w-100 upload-btn">
-                <i class="bi bi-camera"></i> Foto
+            <label class="btn btn-sm btn-outline-secondary upload-btn">
+                <i class="bi bi-camera"></i>
                 <input type="file" name="<?= $fieldName ?>_foto" accept="image/*" capture="environment" class="d-none foto-input">
             </label>
             <div class="foto-preview mt-1" style="display:none;">
-                <img src="" alt="Preview" class="img-thumbnail" style="max-height: 80px; cursor: pointer;">
+                <img src="" alt="Preview" class="img-thumbnail" style="max-height: 60px; cursor: pointer;">
                 <button type="button" class="btn btn-sm btn-outline-danger remove-foto" title="Remover">
                     <i class="bi bi-x"></i>
                 </button>
