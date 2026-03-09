@@ -19,7 +19,7 @@
                placeholder="Observações (opcional)">
     </td>
     <td class="text-center foto-cell" data-label="Foto">
-        <input type="file" name="<?= $fieldName ?>_foto[]" accept="image/*" capture="environment" class="d-none foto-input" id="foto_<?= $fieldName ?>" multiple>
+        <input type="file" name="<?= $fieldName ?>_foto[]" accept="image/*" class="d-none foto-input" id="foto_<?= $fieldName ?>" multiple>
         <label for="foto_<?= $fieldName ?>" class="btn btn-sm btn-outline-secondary upload-btn mb-0">
             <i class="bi bi-camera"></i> <span class="foto-count"></span>
         </label>
