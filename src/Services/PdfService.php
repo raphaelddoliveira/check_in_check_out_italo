@@ -13,32 +13,34 @@ class PdfService
     {
         $options = new Options();
         $options->set('isHtml5ParserEnabled', true);
-        $options->set('isRemoteEnabled', false);
+        $options->set('isRemoteEnabled', true);
         $options->set('defaultFont', 'DejaVu Sans');
 
         $this->dompdf = new Dompdf($options);
     }
 
-    public function generateCheckInPdf(array $formData, array $opportunityInfo): string
+    public function generateCheckInPdf(array $formData, array $opportunityInfo, array $fotos = []): string
     {
         $items = FormDataMapper::getCheckInItems();
         $html = $this->renderTemplate('pdf/checkin_pdf', [
             'formData'    => $formData,
             'opportunity' => $opportunityInfo,
             'items'       => $items,
+            'fotos'       => $fotos,
             'submittedAt' => date('d/m/Y H:i:s'),
         ]);
 
         return $this->generatePdf($html);
     }
 
-    public function generateCheckOutPdf(array $formData, array $opportunityInfo): string
+    public function generateCheckOutPdf(array $formData, array $opportunityInfo, array $fotos = []): string
     {
         $items = FormDataMapper::getCheckOutItems();
         $html = $this->renderTemplate('pdf/checkout_pdf', [
             'formData'    => $formData,
             'opportunity' => $opportunityInfo,
             'items'       => $items,
+            'fotos'       => $fotos,
             'submittedAt' => date('d/m/Y H:i:s'),
         ]);
 

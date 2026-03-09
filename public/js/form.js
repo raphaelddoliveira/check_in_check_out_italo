@@ -31,6 +31,55 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Upload de fotos - preview e remover
+    document.querySelectorAll('.foto-input').forEach(function (input) {
+        input.addEventListener('change', function () {
+            var wrapper = this.closest('.upload-wrapper');
+            var preview = wrapper.querySelector('.foto-preview');
+            var img = preview.querySelector('img');
+            var uploadBtn = wrapper.querySelector('.upload-btn');
+
+            if (this.files && this.files[0]) {
+                var file = this.files[0];
+                if (file.size > 5 * 1024 * 1024) {
+                    alert('A imagem deve ter no máximo 5MB.');
+                    this.value = '';
+                    return;
+                }
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    img.src = e.target.result;
+                    preview.style.display = 'flex';
+                    uploadBtn.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    });
+
+    document.querySelectorAll('.remove-foto').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var wrapper = this.closest('.upload-wrapper');
+            var input = wrapper.querySelector('.foto-input');
+            var preview = wrapper.querySelector('.foto-preview');
+            var uploadBtn = wrapper.querySelector('.upload-btn');
+            input.value = '';
+            preview.querySelector('img').src = '';
+            preview.style.display = 'none';
+            uploadBtn.style.display = 'block';
+        });
+    });
+
+    document.querySelectorAll('.foto-preview img').forEach(function (img) {
+        img.addEventListener('click', function () {
+            var modalImg = document.getElementById('fotoModalImg');
+            if (modalImg) {
+                modalImg.src = this.src;
+                new bootstrap.Modal(document.getElementById('fotoModal')).show();
+            }
+        });
+    });
+
     // Modais
     var confirmModal = document.getElementById('confirmModal');
     var errorModal = document.getElementById('errorModal');

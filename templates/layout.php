@@ -80,6 +80,22 @@
         </div>
     </div>
 
+    <!-- Modal: Visualizar Foto -->
+    <div class="modal fade" id="fotoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 bg-transparent shadow-none">
+                <div class="modal-body text-center p-0">
+                    <img id="fotoModalImg" src="" alt="Foto" class="img-fluid rounded" style="max-height: 80vh;">
+                </div>
+                <div class="text-center mt-2">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg"></i> Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="<?= $basePath ?>/public/js/form.js"></script>
 </body>

@@ -145,9 +145,10 @@
     <table>
         <thead>
             <tr>
-                <th style="width: 35%">Item</th>
-                <th style="width: 25%">Condição</th>
-                <th style="width: 40%">Observações</th>
+                <th style="width: 28%">Item</th>
+                <th style="width: 17%">Condição</th>
+                <th style="width: 30%">Observações</th>
+                <th style="width: 25%">Foto</th>
             </tr>
         </thead>
         <tbody>
@@ -156,11 +157,13 @@
                 $status = $formData[$fieldName . '_status'] ?? '-';
                 $obs = $formData[$fieldName . '_obs'] ?? '';
                 $statusClass = ($status === 'OK') ? 'status-ok' : 'status-problem';
+                $hasFoto = !empty($fotos[$fieldName]);
                 ?>
                 <tr>
                     <td><?= htmlspecialchars($item['label']) ?></td>
                     <td class="<?= $statusClass ?>"><?= htmlspecialchars($status) ?></td>
                     <td><?= htmlspecialchars($obs) ?: '-' ?></td>
+                    <td><?php if ($hasFoto): ?><img src="<?= $fotos[$fieldName] ?>" style="max-width: 120px; max-height: 80px;"><?php else: ?>-<?php endif; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

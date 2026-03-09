@@ -24,6 +24,20 @@ class CheckOutController
         $this->opportunityService = new OpportunityService();
     }
 
+    private function processUploadedPhotos(): array
+    {
+        $fotos = [];
+        foreach ($_FILES as $key => $file) {
+            if (!str_ends_with($key, '_foto') || $file['error'] !== UPLOAD_ERR_OK) continue;
+            if ($file['size'] > 5 * 1024 * 1024) continue;
+            $mime = mime_content_type($file['tmp_name']);
+            if (!str_starts_with($mime, 'image/')) continue;
+            $fieldName = str_replace('_foto', '', $key);
+            $fotos[$fieldName] = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($file['tmp_name']));
+        }
+        return $fotos;
+    }
+
     public function show(Request $request): void
     {
         $access = $this->authMiddleware->handle($request);
@@ -71,6 +85,7 @@ class CheckOutController
         }
 
         $postData = $request->all();
+        $fotos = $this->processUploadedPhotos();
 
         try {
             $opportunity = $this->opportunityService->getOpportunityDetails($oppId);
@@ -81,7 +96,7 @@ class CheckOutController
 
             // Generate and attach PDF
             $pdfService = new PdfService();
-            $pdfContent = $pdfService->generateCheckOutPdf($postData, $opportunity);
+            $pdfContent = $pdfService->generateCheckOutPdf($postData, $opportunity, $fotos);
 
             $filename = 'checkout_' . date('Y-m-d_His') . '.pdf';
             $attachmentService = new AttachmentService();

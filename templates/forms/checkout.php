@@ -16,7 +16,7 @@ $items = \App\Services\FormDataMapper::getCheckOutItems();
             </div>
 
             <div class="card-body">
-                <form method="POST" action="<?= $formAction ?>" id="checkoutForm">
+                <form method="POST" action="<?= $formAction ?>" id="checkoutForm" enctype="multipart/form-data">
                     <?= $csrfField ?>
 
                     <!-- Data e Horario -->
